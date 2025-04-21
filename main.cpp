@@ -167,53 +167,41 @@ void heapify(vector<Restaurant>& restaurants, int n, int i){
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
-
     if (left < n && better(restaurants[left], restaurants[largest])){
-        largest = left;	// set largest to left
+        largest = left; // set largest to left
     }
-
 
     if (right < n && better(restaurants[right], restaurants[largest])){
-        largest = right;	// Set largest to right
+        largest = right;    // Set largest to right
     }
 
-
     if (largest != i){
-        swap(restaurants[i], restaurants[largest]);	// Swap their positions
+        swap(restaurants[i], restaurants[largest]); // Swap their positions
         heapify(restaurants, n, largest);
     }
 }
 
+void heapSort(vector<Restaurant>& restaurants){ // takes in restaurants vector
+    int n = restaurants.size();    // Size of restaurants vector
 
-void heapSort(vector<Restaurant>& restaurants){	// takes in restaurants vector
-    int n = restaurants.size();		// Size of restaurants vector
-
-
-    for (int i = n / 2 - 1; i >= 0; i--){	// first half
+    for (int i = n / 2 - 1; i >= 0; i--){   // first half
         heapify(restaurants, n, i);
     }
-
 
     for (int i = n - 1; i > 0; i--){
         swap(restaurants[0], restaurants[i]);
         heapify(restaurants, i, 0);
     }
-
-
     reverse(restaurants.begin(), restaurants.end()); // Reverse the order from ascending to descending.
 }
 
-
-double timeHeap(vector<Restaurant> restaurants){		// This will return the runtime.
+double timeHeap(vector<Restaurant> restaurants){       // This will return the runtime.
     auto start = chrono::high_resolution_clock::now();
-    heapSort(restaurants);	// Call sorting algorithm
+    heapSort(restaurants);  // Call sorting algorithm
     auto end = chrono::high_resolution_clock::now();
 
-
-    return chrono::duration<double, milli>(end - start).count();	// Runtime will be in milliseconds
+    return chrono::duration<double, milli>(end - start).count();    // Runtime will be in milliseconds
 }
-
-
 
 
 int main(){
