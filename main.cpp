@@ -15,6 +15,7 @@ using namespace std;
 
 //Nick Santarsiero – JSON parsing and dataset filtering
 
+
 //parses the string to get the correct parts of the string
 string parseString(string key, string line){
     string pattern = "\"" + key + "\":\"";
@@ -23,14 +24,10 @@ string parseString(string key, string line){
         return "";
     }
 
-
     pos += pattern.length();
     size_t end = line.find('"', pos);
     return line.substr(pos, end - pos);
 }
-
-
-
 
 //gets the numbers from the string
 string parseNumber(string key, string line){
@@ -40,24 +37,18 @@ string parseNumber(string key, string line){
         return "";
     }
 
-
     pos += pattern.length();
     while (isspace(line[pos])){
         ++pos;
     }
-
 
     size_t end = pos;
     while(end < line.size() && (isdigit(line[end]) || line[end] == '.' || line[end] == '-')){
         ++end;
     }
 
-
     return line.substr(pos, end - pos);
 }
-
-
-
 
 //struct to parse data and store aspects of a restaurant
 struct Restaurant{
@@ -69,7 +60,6 @@ struct Restaurant{
     int review_count;
     double stars;
     int line_length;
-
 
     //constructor to assign data
     Restaurant(string line){
@@ -83,15 +73,11 @@ struct Restaurant{
     }
 };
 
-
-
-
 //compares the number of characteristics of a restaurents (length of inputted string) to break ties
 bool better(Restaurant& a, Restaurant& b){
     if (a.stars != b.stars){
         return a.stars > b.stars;
     }
-
 
     return a.line_length < b.line_length;
 }
@@ -228,7 +214,7 @@ double timeHeap(vector<Restaurant> restaurants){		// This will return the runtim
 }
 
 
-/*─────────────── Main – runs the program ───────────────*/
+
 
 int main(){
     //Nicholas Santarsiero
@@ -245,7 +231,6 @@ int main(){
     int minReviews = 0;
     int maxReviews = numeric_limits<int>::max();
 
-
     if(range == 1){
         maxReviews = 49;
     }
@@ -261,11 +246,11 @@ int main(){
         return 1;
     }
 
-
     //input to see what part to test
     cout << "Choose algorithm  1) Merge  2) Heap  3) Compare both: ";
     int alg;
     cin >> alg;
+
 
     if (alg < 1 || alg > 3){
         cout << "Invalid.\n";
@@ -275,19 +260,14 @@ int main(){
     //datafile
     ifstream file("/Users/nicksantarsiero/Desktop/yelp_academic_dataset_business.json");
 
-
-
-
     if(!file){
         cerr << "File not found.\n";
         return 1;
     }
 
-
     //vector to store different restuarents
     vector<Restaurant> data;
     string line;
-
 
     //checks if a resturant is correct based on the user inputs, then enters it into the vector if correct
     while(getline(file, line)){
