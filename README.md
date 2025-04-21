@@ -65,7 +65,7 @@ Dataset: Yelp Academic Dataset
 
 
 Demo Video
-[Insert YouTube Link Here]
+(https://youtu.be/ZaNrysMWr6c)
 Contributors
 Name: Nicholas Santarsiero
  GitHub: @santarsiero
